@@ -1,4 +1,24 @@
+<div class="row r5 mx-0 mb-1 bg-light justify-content-center py-4">
+     <div id="alert_message"></div>
+     <table  id="piutangTables" class="table table-striped table-bordered">
+     	<thead class="bg-success" style="font-size: 15px;">
+     	<tr>
+     		<th>ID</th>
+	     	<th>Customer</th>
+	     	<th>No.Invoice</th>
+	     	<th>Invoice Date</th>
+	     	<th>Amount</th>
+	     	<th>Pay Term</th>
+	     	<th>Due Date</th>
+	     	<th>Pay Date</th>
+	     	<th>Paid Amount</th>
+	     	<th>Clear</th>
+	     	<th> </th>
+     	</tr>
+     	</thead>
+
 <?php
+include 'connect.php';
 $sql = "SELECT * FROM `cmi piutang dagang`";
 $result = mysqli_query($conn, $sql);
 
@@ -19,10 +39,13 @@ $result = mysqli_query($conn, $sql);
 		echo '<td class="r_data" name="pd" id="'.$row["id"].'">'.$row["PaymentDate"].'</td>';
 		echo '<td class="r_data" name="pa" id="'.$row["id"].'">'.$row["PaidAmount"].'</td>';
 		echo '<td class="r_data" id="'.$row["id"].'">'.$row["Clear"].'</td>';
-		echo '<td><a class="edit" href="" data-toggle="modal" data-target="#myModal" style="color:black;" id="'.$row["id"].'">
-		<i class="fas fa-edit"></i></a></td>';
 		echo "</tr>";
 	}
  }
 
 ?>
+
+
+	</table>
+</div>
+</div>
