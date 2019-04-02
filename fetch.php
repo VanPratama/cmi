@@ -1,26 +1,34 @@
 <?php
 include 'connect.php';
-$columns = array('Customer', 'No.Invoice', 'Invoice Date', 'Amount', 'Pay Term', 'Due Date', 'Pay Date', 'Paid Amount');
+$columns = array('id','Customer', 'Invoice', 'DateOfInvoice', 'Amount', 'PayTerm', 'DueDate', 'PaymentDate', 'PaidAmount', 'Clear');
 
-$query = "SELECT * FROM `cmi piutang dagang` ";
+$query = "SELECT id,Customer,Invoice,DateOfInvoice,Amount,PayTerm,DueDate,PaymentDate,PaidAmount,Clear FROM `cmi piutang dagang`";
 
-// if(isset($_POST["search"]["value"]))
-// {
-//  $query .= '
-//  WHERE Customer LIKE "%'.$_POST["search"]["value"].'%" 
-//  OR No.Invoice LIKE "%'.$_POST["search"]["value"].'%" 
-//  ';
-// }
+if(isset($_POST["search"]["value"]))
+{
+ $query .= '
+ WHERE id LIKE "%'.$_POST["search"]["value"].'%"
+ OR Customer LIKE "%'.$_POST["search"]["value"].'%" 
+ OR Invoice LIKE "%'.$_POST["search"]["value"].'%"
+ OR DateOfInvoice LIKE "%'.$_POST["search"]["value"].'%"
+ OR Amount LIKE "%'.$_POST["search"]["value"].'%"
+ OR PayTerm LIKE "%'.$_POST["search"]["value"].'%"
+ OR DueDate LIKE "%'.$_POST["search"]["value"].'%"
+ OR PaymentDate LIKE "%'.$_POST["search"]["value"].'%"
+ OR PaidAmount LIKE "%'.$_POST["search"]["value"].'%" 
+ OR Clear LIKE "%'.$_POST["search"]["value"].'%" 
+ ';
+}
 
-// if(isset($_POST["order"]))
-// {
-//  $query .= 'ORDER BY '.$columns[$_POST['order']['0']['column']].' '.$_POST['order']['0']['dir'].' 
-//  ';
-// }
-// else
-// {
-//  $query .= 'ORDER BY id DESC ';
-// }
+if(isset($_POST["order"]))
+{
+ $query .= 'ORDER BY '.$columns[$_POST['order']['0']['column']].' '.$_POST['order']['0']['dir'].' 
+ ';
+}
+else
+{
+ $query .= 'ORDER BY id DESC ';
+}
 
 $query1 = '';
 
@@ -28,6 +36,7 @@ if($_POST["length"] != -1)
 {
  $query1 = 'LIMIT ' . $_POST['start'] . ', ' . $_POST['length'];
 }
+
 
 $number_filter_row = mysqli_num_rows(mysqli_query($conn, $query));
 
@@ -38,15 +47,16 @@ $data = array();
 while($row = mysqli_fetch_array($result))
 {
  $sub_array = array();
- $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="first_name">' . $row["Customer"] . '</div>';
- $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="last_name">' . $row["No.Invoice"] . '</div>';
- $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="last_name">' . $row["Invoice Date"] . '</div>';
- $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="last_name">' . $row["Amount"] . '</div>';
- $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="last_name">' . $row["Pay Term"] . '</div>';
- $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="last_name">' . $row["Due Date"] . '</div>';
- $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="last_name">' . $row["Pay Date"] . '</div>';
- $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="last_name">' . $row["Paid Amount"] . '</div>';
- $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="last_name">' . $row["Clear"] . '</div>';
+  $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="customer">' . $row["id"] . '</div>';
+ $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="customer">' . $row["Customer"] . '</div>';
+ $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="noinvoice">' . $row["Invoice"] . '</div>';
+ $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="invoicedate">' . $row["DateOfInvoice"] . '</div>';
+ $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="amount">' . $row["Amount"] . '</div>';
+ $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="payterm">' . $row["PayTerm"] . '</div>';
+ $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="duedate">' . $row["DueDate"] . '</div>';
+ $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="paydate">' . $row["PaymentDate"] . '</div>';
+ $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="paidamount">' . $row["PaidAmount"] . '</div>';
+ $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="clear">' . $row["Clear"] . '</div>';
  $sub_array[] = '<button type="button" name="delete" class="btn btn-danger btn-xs delete" id="'.$row["id"].'">Delete</button>';
  $data[] = $sub_array;
 }

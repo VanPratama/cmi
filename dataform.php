@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="../atw/css/bootstrap.min.css">
 	<script src="../atw/jquery.min.js"></script>
 	<script src="../atw/jquery.dataTables.min.js"></script>
-	<script src="../atw/dataTables.bootstrap.min"></script>
+	<script src="../atw/assets/js/dataTables.bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="../atw/css/jquery.dataTables.css">
   	<script src="../atw/popper.min.js"></script>
 	<script src="../atw/js/bootstrap.min.js"></script>
@@ -289,11 +289,11 @@ hr{
 	  	 <button class="btn btn-success" type="submit" name="add" data-toggle="tooltip" title="New Document">
 			<i class="far fa-plus-square"></i>
 		 </button>
-		 <button class="btn btn-success" type="submit" name="load" data-toggle="tooltip" title="Load Document">
+		 <button class="btn btn-success" type="submit" name="load" data-toggle="modal" data-target="#myModal" title="Load Document">
 		 	<i class="fas fa-book-open"></i>
 		 </button>
 		 <button class="btn btn-success" type="submit" name="expr" data-toggle="tooltip" title="Export">
-			<i class="	fas fa-file-export"></i>
+			<a href="export.php" style="color: #fff;"><i class="fas fa-file-export"></i></a>
 		 </button>
 		 <button class="btn btn-success" type="submit" name="edit" data-toggle="tooltip" title="Edit">
 			<a href="EditDataForm.php" style="color: #fff;"><i class="fas fa-edit"></i></a>
@@ -304,7 +304,8 @@ hr{
 	</div>
 
     <div class="row r5 mx-0 mb-1 bg-light justify-content-center py-4">
-     <table  id="piutangTables" class="table table-striped-bordered display">
+     <div id="alert_message"></div>
+     <table  id="piutangTables" class="table table-striped table-bordered">
      	<thead class="bg-success" style="font-size: 15px;">
      	<tr>
      		<th>ID</th>
@@ -319,11 +320,10 @@ hr{
 	     	<th>Clear</th>
 	     	<th> </th>
      	</tr>
-     	</thead>
-     	
-     	<tbody style="text-transform: capitalize;font-size: 12px;">
+     	</thead>	
+     	<!-- <tbody style="text-transform: capitalize;font-size: 12px;">
      	 <?php include 'ViewTable.php'?>
-     	</tbody>
+     	</tbody> -->
      </table>
     </div>
 	</div>
@@ -340,8 +340,6 @@ hr{
 </div>
 
 </div>
-<p style="background-color: green;"><?php include 'edittable.php' ?></p>
-<p id="demo"></p>
 
 <footer class="container-fluid ftr text-center ">
   <hr><a href="https://www.facebook.com/SunleeOfficial"><i class='fab fa-facebook'style='font-size:24px;color:#66a344;padding-right: 10px;'></i></a>
@@ -349,52 +347,131 @@ hr{
   <p>© 2019 Artindo Tata Warna . All rights reserved.</p>
 </footer>
 
+<script type="text/javascript" language="javascript" >
+ $(document).ready(function(){
+  
+  fetch_data();
 
+  function fetch_data()
+  {
+   var dataTable = $('#piutangTables').DataTable({
+    "processing" : true,
+    "serverSide" : true,
+    "order" : [],
+    "ajax" : {
+     url:"fetch.php",
+     type:"POST"
+    }
+   });
+  }
+  
+  function update_data(id, column_name, value)
+  {
+   $.ajax({
+    url:"update.php",
+    method:"POST",
+    data:{id:id, column_name:column_name, value:value},
+    success:function(data)
+    {
+     $('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
+     $('#piutangTables').DataTable().destroy();
+     fetch_data();
+    }
+   });
+   setInterval(function(){
+    $('#alert_message').html('');
+   }, 5000);
+  }
+
+  $(document).on('blur', '.update', function(){
+   var id = $(this).data("id");
+   var column_name = $(this).data("column");
+   var value = $(this).text();
+   update_data(id, column_name, value);
+  }); 
+  
+  $(document).on('click', '.delete', function(){
+   var id = $(this).attr("id");
+   if(confirm("Are you sure you want to remove this?"))
+   {
+    $.ajax({
+     url:"delete.php",
+     method:"POST",
+     data:{id:id},
+     success:function(data){
+      $('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
+      $('#piutangTables').DataTable().destroy();
+      fetch_data();
+     }
+    });
+    setInterval(function(){
+     $('#alert_message').html('');
+    }, 5000);
+   }
+  });
+ });
+</script>
 
 <script>
 $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip();   
 });
-$(document).ready(function() {
-    var table = $('#piutangTables').DataTable({
-			"columnDefs": [ {
-            "targets": -1,
-            "data": null,
-            "defaultContent": "<button>Click!</button>"
-        } ]
-    });
-
-
-
-     $('#piutangTables tbody').on( 'click', 'button', function () {
-        var edata = table.row($(this).parents('tr')).data();
-        alert( edata[1] +"'s salary is: "+ edata[ 4 ] );
-
-
-
-        $.ajax({
-        url: "edittable.php",
-        data: {'jdata' : edata[1], 'jdata2' : edata[2], 'jdata3' : edata[3], 'jdata4' : edata[4], 'jdata5' : edata[5], 'jdata6' : edata[6], 'jdata7' : edata[7], 'jdata8' : edata[8]},
-   		type: "POST",
-        dataType: "json", 
-        cache: false,
-        beforeSend: function () {
-
-        },
-
-        success: function(data){
-            //alert("OK");
-            console.log(data.reply);
-            alert(data.reply);
-           	console.log(edata);
-            document.getElementById("demo").innerHTML=edata;
-        	}
-    	});
-    } );
-} );
-
-
 </script>
+
+<div class="modal fade showDB" id="myModal">
+	<div class="modal-dialog modal-lg">
+	<div class="modal-content">
+	      
+	<div class="modal-header">
+	     <h4 class="modal-title">Change Table</h4>
+	     <button type="button" class="close" data-dismiss="modal">&times;</button>
+	</div>        
+
+	<div class="modal-body">
+
+	<form class="form-horizontal" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
+	 <div class="row r6 pt-4 mx-0 mb-1 bg-light">
+	  <ul>
+	   <div class="form-group">
+	    <div class="col-sm-12">
+	     <div class="input-group mb-3 input-group-md">
+	      <div class="input-group-prepend">
+	          <span class="input-group-text">Payment Terms:</span>
+	      </div>
+	          <select name="term" id="terms" class="custom-select">
+	          <option selected>-</option>
+	          <?php
+	          include 'connect.php';
+	          $result = mysqli_query($conn,"SHOW TABLES");
+	          while ($row = mysqli_fetch_array($result)) 
+	          { 
+	            echo '<option value="'.$row[0].'">'.$row[0].'</option>';
+	          }
+	          ?>
+	          </select>
+	      </div>         
+	     </div>
+	   </div>
+	  </ul>
+	 </div>
+	</div>
+
+	<div class="modal-footer">
+		 <button type="button" class="btn btn-primary" type="submit" name="viewdb">Submit</button>
+	     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	</div>
+
+	</form>	
+
+	</div>
+	</div>
+</div>
+<!-- //Show Database list
+$result = mysqli_query($conn,"SHOW DATABASES"); while ($row = 
+mysqli_fetch_array($result)) { echo $row[0]."<br>"; } -->
+
+
+
 
 </body>
 </html>
