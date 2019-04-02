@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['entr'])){
 	$ddate=Insinp($_POST["due"]);$pramoun=Insinp($_POST["tax"]);$paamoun=Insinp($_POST["p_am"]);$pydate= Insinp($_POST["paydate"]);
 	$total= $paamoun;
 
-	$sql = "SELECT ID,Customer,Invoice,DateOfInvoice,Amount,PayTerm,DueDate,PaymentDate,PaidAmount,Clear FROM `cmi piutang dagang`";
+	$sql = "SELECT id,Customer,Invoice,DateOfInvoice,Amount,PayTerm,DueDate,PaymentDate,PaidAmount,Clear FROM `cmi piutang dagang`";
 	$result = mysqli_query($conn, $sql);
 
 	if (!$_POST["user"] || !$_POST["no"] || !$_POST["idate"] || $_POST["term"] === "-" || !$_POST["due"] || !$_POST["tax"]){
