@@ -19,6 +19,8 @@ $result = mysqli_query($conn, $sql);
 		echo '<td class="r_data" name="pd" id="'.$row["id"].'">'.$row["PaymentDate"].'</td>';
 		echo '<td class="r_data" name="pa" id="'.$row["id"].'">'.$row["PaidAmount"].'</td>';
 		echo '<td class="r_data" id="'.$row["id"].'">'.$row["Clear"].'</td>';
+		echo '<td><a class="edit" href="" data-toggle="modal" data-target="#myModal" style="color:black;" id="'.$row["id"].'">
+		<i class="fas fa-edit"></i></a></td>';
 		echo "</tr>";
 	}
  }
