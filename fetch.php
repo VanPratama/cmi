@@ -1,5 +1,6 @@
 <?php
 include 'connect.php';
+
 $columns = array('id','Customer', 'Invoice', 'DateOfInvoice', 'Amount', 'PayTerm', 'DueDate', 'PaymentDate', 'PaidAmount', 'Clear');
 
 $query = "SELECT id,Customer,Invoice,DateOfInvoice,Amount,PayTerm,DueDate,PaymentDate,PaidAmount,Clear FROM `cmi piutang dagang`";
@@ -27,7 +28,7 @@ if(isset($_POST["order"]))
 }
 else
 {
- $query .= 'ORDER BY id DESC ';
+ $query .= 'ORDER BY id ASC '; //DESC
 }
 
 $query1 = '';
@@ -47,7 +48,7 @@ $data = array();
 while($row = mysqli_fetch_array($result))
 {
  $sub_array = array();
-  $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="customer">' . $row["id"] . '</div>';
+ $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="customer">' . $row["id"] . '</div>';
  $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="customer">' . $row["Customer"] . '</div>';
  $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="noinvoice">' . $row["Invoice"] . '</div>';
  $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="invoicedate">' . $row["DateOfInvoice"] . '</div>';
@@ -57,7 +58,7 @@ while($row = mysqli_fetch_array($result))
  $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="paydate">' . $row["PaymentDate"] . '</div>';
  $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="paidamount">' . $row["PaidAmount"] . '</div>';
  $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-column="clear">' . $row["Clear"] . '</div>';
- $sub_array[] = '<button type="button" name="delete" class="btn btn-danger btn-xs delete" id="'.$row["id"].'">Delete</button>';
+ $sub_array[] = '<button type="button" name="delete" class="btn btn-danger btn-xs delete" id="'.$row["id"].'"><i class="far fa-trash-alt"></i></button>';
  $data[] = $sub_array;
 }
 

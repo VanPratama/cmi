@@ -9,7 +9,6 @@
 	<link rel="stylesheet" href="../atw/css/bootstrap.min.css">
 	<script src="../atw/jquery.min.js"></script>
 	<script src="../atw/jquery.dataTables.min.js"></script>
-	<script src="../atw/assets/js/dataTables.bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="../atw/css/jquery.dataTables.css">
   	<script src="../atw/popper.min.js"></script>
 	<script src="../atw/js/bootstrap.min.js"></script>
@@ -55,6 +54,14 @@
   background-color: #24271f;
   color: #66a344;
   border: 1px solid #98ed63;
+}
+.r5{
+  font: 14px Assistant , sans-serif!important;
+  text-transform: capitalize;
+}
+.r5 thead{
+  font: 14px Assistant , sans-serif!important;
+  font-weight: 600!important;
 }
 .ftr {
   color: #24271f;
@@ -286,7 +293,7 @@ hr{
     <div class="row r4 mt-3 mx-0">
 	  	<div class="col-sm-12 px-0">
 	  	 <div class="btn-group">
-	  	 <button class="btn btn-success" type="submit" name="add" data-toggle="tooltip" title="New Document">
+	  	 <button class="btn btn-success" type="submit" name="add" data-toggle="modal" data-target="#newModal" title="New Document">
 			<i class="far fa-plus-square"></i>
 		 </button>
 		 <button class="btn btn-success" type="submit" name="load" data-toggle="modal" data-target="#myModal" title="Load Document">
@@ -303,9 +310,9 @@ hr{
 	  	</div>
 	</div>
 
-    <div class="row r5 mx-0 mb-1 bg-light justify-content-center py-4">
+    <div class="row r5 mx-0 mb-1 bg-light px-1 py-4 table-responsive ">
      <div id="alert_message"></div>
-     <table  id="piutangTables" class="table table-striped table-bordered">
+     <table  id="piutangTables" class="table table-striped table-bordered text-center">
      	<thead class="bg-success" style="font-size: 15px;">
      	<tr>
      		<th>ID</th>
@@ -418,6 +425,64 @@ $(document).ready(function(){
 });
 </script>
 
+<div class="modal fade newDB" id="newModal">
+	<div class="modal-dialog modal-lg">
+	<div class="modal-content">
+	      
+	<div class="modal-header">
+	     <h4 class="modal-title">Create New Tables</h4>
+	     <button type="button" class="close" data-dismiss="modal">&times;</button>
+	</div>        
+
+	<div class="modal-body mx-0 px-0">
+
+	<form class="form-horizontal" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
+	 <div class="row r6 pt-4 mx-0 mb-1 bg-light">
+	  <ul>
+	  <div class="col-sm-12">
+	   <div class="form-group">
+			<div class="input-group mb-3 input-group-sm">
+			 <div class="input-group-prepend">
+			   <span class="input-group-text">Masukkan Nama Table:</span>
+			 </div>
+			 <input type="text" class="form-control" name="tablename" placeholder="Masukkan Nama">
+			</div>
+	   </div>
+	  </div>
+	  </ul>
+	 </div>
+
+	 <div class="row r3 pt-4 mx-0 mb-2 bg-light">
+	  <div class="col-sm-12" align="center">
+	 	<div class="form-group">
+
+	    <div class="col-sm-10">
+	     <div class="input-group input-group-md">
+	     <div class="input-group-prepend">
+		    <button class="btn btn-success px-5" type="submit" name="insdb">Submit</button>
+		 </div>
+		 <label class="control-label col-sm-8 align-self-center text-center mb-0" for="dateinp1">
+		 	<?php include 'newtablevalidate.php';?>
+		 </label>
+		 </div> 
+	 	</div>
+
+	 	</div>
+	  </div>	
+	  </div>
+
+	</form>	
+	
+	</div>
+
+	<div class="modal-footer">
+	     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	</div>
+
+	</div>
+	</div>
+</div>
+
 <div class="modal fade showDB" id="myModal">
 	<div class="modal-dialog modal-lg">
 	<div class="modal-content">
@@ -436,16 +501,18 @@ $(document).ready(function(){
 	    <div class="col-sm-12">
 	     <div class="input-group mb-3 input-group-md">
 	      <div class="input-group-prepend">
-	          <span class="input-group-text">Payment Terms:</span>
+	          <span class="input-group-text">Pilih Tables:</span>
 	      </div>
-	          <select name="term" id="terms" class="custom-select">
+	          <select name="tble" id="tble" class="custom-select">
 	          <option selected>-</option>
 	          <?php
 	          include 'connect.php';
+	          $r=1;
 	          $result = mysqli_query($conn,"SHOW TABLES");
 	          while ($row = mysqli_fetch_array($result)) 
 	          { 
-	            echo '<option value="'.$row[0].'">'.$row[0].'</option>';
+	            echo '<option value="'.$r.'">'.$row[0].'</option>';
+	            $r++;
 	          }
 	          ?>
 	          </select>
