@@ -72,6 +72,16 @@
 .ftr a:hover{
   opacity: 0.5;
 }
+.modal-title{
+  color: #fff;
+  font: 1.5rem Azoft Sans , sans-serif!important;
+  line-height: 1.5;
+  font-weight: 500!important;
+  letter-spacing: 4px;
+}
+.modal-body{
+  font: 12px Assistant , sans-serif!important;
+}
 hr{ 
   display: inline-block;
   margin: 0.5em;
@@ -244,7 +254,6 @@ hr{
 			 </div>
 			</div>
 			</div>
-
 	      </ul>
   	  </div>
 
@@ -293,17 +302,14 @@ hr{
     <div class="row r4 mt-3 mx-0">
 	  	<div class="col-sm-12 px-0">
 	  	 <div class="btn-group">
-	  	 <button class="btn btn-success" type="submit" name="add" data-toggle="modal" data-target="#newModal" title="New Document">
-			<i class="far fa-plus-square"></i>
+	  	 <button class="btn btn-success" type="submit" name="add" data-toggle="modal" data-target="#newModal">
+			<i class="far fa-plus-square" data-toggle="tooltip" title="New Document"></i>
 		 </button>
-		 <button class="btn btn-success" type="submit" name="load" data-toggle="modal" data-target="#myModal" title="Load Document">
-		 	<i class="fas fa-book-open"></i>
+		 <button class="btn btn-success" type="submit" name="load" data-toggle="modal" data-target="#myModal">
+		 	<i class="fas fa-book-open" data-toggle="tooltip" title="Load Document"></i>
 		 </button>
 		 <button class="btn btn-success" type="submit" name="expr" data-toggle="tooltip" title="Export">
 			<a href="export.php" style="color: #fff;"><i class="fas fa-file-export"></i></a>
-		 </button>
-		 <button class="btn btn-success" type="submit" name="edit" data-toggle="tooltip" title="Edit">
-			<a href="EditDataForm.php" style="color: #fff;"><i class="fas fa-edit"></i></a>
 		 </button>
 
 	  	 </div>
@@ -390,6 +396,21 @@ hr{
    }, 5000);
   }
 
+/*  $('#tble').change(function () {
+    var selectedText = $(this).find("option:selected").text();
+    
+    $.ajax({
+      url:"fetch.php",
+      method:"POST",
+      data:{selectedText:selectedText},
+      success:function(data){
+      // alert(selectedText);
+      fetch_data();
+     }
+    });
+    //alert(selectedText);
+  }); 
+*/
   $(document).on('blur', '.update', function(){
    var id = $(this).data("id");
    var column_name = $(this).data("column");
@@ -416,9 +437,10 @@ hr{
     }, 5000);
    }
   });
+
  });
 </script>
-
+            
 <script>
 $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip();   
@@ -429,27 +451,45 @@ $(document).ready(function(){
 	<div class="modal-dialog modal-lg">
 	<div class="modal-content">
 	      
-	<div class="modal-header">
-	     <h4 class="modal-title">Create New Tables</h4>
+	<div class="modal-header bg-success">
+	     <h4 class="modal-title">CREATE NEW TABLE</h4>
 	     <button type="button" class="close" data-dismiss="modal">&times;</button>
 	</div>        
 
 	<div class="modal-body mx-0 px-0">
 
 	<form class="form-horizontal" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
+
 	 <div class="row r6 pt-4 mx-0 mb-1 bg-light">
+	  <div class="col-sm-6 pl-0">
 	  <ul>
-	  <div class="col-sm-12">
 	   <div class="form-group">
-			<div class="input-group mb-3 input-group-sm">
-			 <div class="input-group-prepend">
-			   <span class="input-group-text">Masukkan Nama Table:</span>
-			 </div>
-			 <input type="text" class="form-control" name="tablename" placeholder="Masukkan Nama">
+	    <div class="col-sm-12 pl-0">
+	     <div class="input-group mb-3 input-group-md">
+			<div class="input-group-prepend">
+			  <span class="input-group-text">Bulan:</span>
 			</div>
+			<input type="text" class="form-control" name="submitbulan" placeholder="Ketik Bulan dalam bentuk angka">
+	     </div>         
+	    </div>
 	   </div>
-	  </div>
 	  </ul>
+	  </div>
+	 
+	  <div class="col-sm-6 pl-0">
+	  <ul>
+	   <div class="form-group">
+	    <div class="col-sm-12 pl-0">
+	     <div class="input-group mb-3 input-group-md">
+			<div class="input-group-prepend">
+			  <span class="input-group-text">Tahun:</span>
+			</div>
+			<input type="text" class="form-control" name="submittahun" placeholder="Ketik Tahun">
+	     </div>        
+	    </div>
+	   </div>
+	  </ul>
+	  </div>
 	 </div>
 
 	 <div class="row r3 pt-4 mx-0 mb-2 bg-light">
@@ -459,7 +499,7 @@ $(document).ready(function(){
 	    <div class="col-sm-10">
 	     <div class="input-group input-group-md">
 	     <div class="input-group-prepend">
-		    <button class="btn btn-success px-5" type="submit" name="insdb">Submit</button>
+		    <button class="btn btn-success px-5" type="submit" name="inscat">Submit</button>
 		 </div>
 		 <label class="control-label col-sm-8 align-self-center text-center mb-0" for="dateinp1">
 		 	<?php include 'newtablevalidate.php';?>
@@ -472,11 +512,11 @@ $(document).ready(function(){
 	  </div>
 
 	</form>	
-	
+
 	</div>
 
 	<div class="modal-footer">
-	     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 	</div>
 
 	</div>
@@ -487,48 +527,60 @@ $(document).ready(function(){
 	<div class="modal-dialog modal-lg">
 	<div class="modal-content">
 	      
-	<div class="modal-header">
-	     <h4 class="modal-title">Change Table</h4>
-	     <button type="button" class="close" data-dismiss="modal">&times;</button>
+	<div class="modal-header bg-success">
+	    <h4 class="modal-title">CHANGE TABLE</h4>
+	    <button type="button" class="close" data-dismiss="modal">&times;</button>
 	</div>        
 
 	<div class="modal-body">
 
-	<form class="form-horizontal" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
+	<form class="form-horizontal" method="post" data-remote="true">
 	 <div class="row r6 pt-4 mx-0 mb-1 bg-light">
+	  
+	  <div class="col-sm-6 pl-0">
 	  <ul>
 	   <div class="form-group">
-	    <div class="col-sm-12">
+	    <div class="col-sm-12 pl-0">
 	     <div class="input-group mb-3 input-group-md">
-	      <div class="input-group-prepend">
-	          <span class="input-group-text">Pilih Tables:</span>
-	      </div>
-	          <select name="tble" id="tble" class="custom-select">
-	          <option selected>-</option>
-	          <?php
-	          include 'connect.php';
-	          $r=1;
-	          $result = mysqli_query($conn,"SHOW TABLES");
-	          while ($row = mysqli_fetch_array($result)) 
-	          { 
-	            echo '<option value="'.$r.'">'.$row[0].'</option>';
-	            $r++;
-	          }
-	          ?>
-	          </select>
-	      </div>         
-	     </div>
+			<div class="input-group-prepend">
+			  <span class="input-group-text">Bulan:</span>
+			</div>
+			<input type="text" class="form-control" name="bulan" placeholder="Ketik Bulan dalam bentuk angka">
+	     </div>         
+	    </div>
 	   </div>
 	  </ul>
-	 </div>
-	</div>
+	  </div>
+	 
+	  <div class="col-sm-6 pl-0">
+	  <ul>
+	   <div class="form-group">
+	    <div class="col-sm-12 pl-0">
+	     <div class="input-group mb-3 input-group-md">
+			<div class="input-group-prepend">
+			  <span class="input-group-text">Tahun:</span>
+			</div>
+			<input type="text" class="form-control" name="tahun" placeholder="Ketik Tahun">
+	     </div>        
+	    </div>
+	   </div>
+	  </ul>
+	  </div>
 
-	<div class="modal-footer">
-		 <button type="button" class="btn btn-primary" type="submit" name="viewdb">Submit</button>
-	     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	</div>
+	 </div>
+	  
+	  <div class="row r3 pt-4 mx-0 mb-2 bg-light">
+	  <div class="col-sm-12" align="right">
+	 	<div class="form-group">
+	     <button class="btn btn-success px-5 view" type="submit" name="viewdb">Change</button>
+	     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+	 	</div>
+	  </div>	
+	  </div>
 
 	</form>	
+
+	</div>
 
 	</div>
 	</div>
