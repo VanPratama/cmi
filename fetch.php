@@ -1,9 +1,13 @@
 <?php
+
 include 'connect.php';
-
 $columns = array('id','Customer', 'Invoice', 'DateOfInvoice', 'Amount', 'PayTerm', 'DueDate', 'PaymentDate', 'PaidAmount', 'Clear');
+$bulanv = isset($_POST["blndta"]);
+$tahunv = isset($_POST["thndta"]);
 
-$query = "SELECT id,Customer,Invoice,DateOfInvoice,Amount,PayTerm,DueDate,PaymentDate,PaidAmount,Clear FROM `cmi piutang dagang`";
+$query = "SELECT id,Customer,Invoice,DateOfInvoice,Amount,PayTerm,DueDate,PaymentDate,PaidAmount,Clear FROM `cmi piutang dagang` WHERE Month = '$bulanv' AND Year = '$tahunv' ";
+
+die($query);
 
 if(isset($_POST["search"]["value"]))
 {
@@ -38,7 +42,6 @@ if($_POST["length"] != -1)
  $query1 = 'LIMIT ' . $_POST['start'] . ', ' . $_POST['length'];
 }
 
-
 $number_filter_row = mysqli_num_rows(mysqli_query($conn, $query));
 
 $result = mysqli_query($conn, $query . $query1);
@@ -64,7 +67,7 @@ while($row = mysqli_fetch_array($result))
 
 function get_all_data($conn)
 {
- $query = "SELECT * FROM `cmi piutang dagang`";
+ $query = "SELECT count(*) FROM `cmi piutang dagang`";
  $result = mysqli_query($conn, $query);
  return mysqli_num_rows($result);
 }
