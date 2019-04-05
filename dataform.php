@@ -18,77 +18,77 @@
   <?php include 'loginvalidate.php' ?>
 
 <style>
-#Section1{
-  display: flex;
-}
-.nv{
-  background-color: #24271f;
-  display: inline-block;
-  max-width: 25%;
-}
-.navbar-nav li a:hover{
-  color: #98ed63!important;
-}
-.navbar-brand,.nl{
-  color: #66a344!important;
-  font: 1.8vw Azoft Sans , sans-serif;
-  font-weight: 600;
-  letter-spacing: 2px;
-  line-height: 2em;
-}
-.nl2{
-  color: #66a344!important;
-  font: 15px Azoft Sans , sans-serif;
-  font-weight: 600;
-  letter-spacing: 2px;
-  line-height: 1.2em;
-}
-.navbar-brand img:hover{
-  filter: brightness(1.1);
-}
-.form-horizontal{
-  font: 12px Assistant , sans-serif;
-}
-.input-group-text{
-  font: 14px Assistant , sans-serif!important;
-  background-color: #24271f;
-  color: #66a344;
-  border: 1px solid #98ed63;
-}
-.r5{
-  font: 14px Assistant , sans-serif!important;
-  text-transform: capitalize;
-}
-.r5 thead{
-  font: 14px Assistant , sans-serif!important;
-  font-weight: 600!important;
-}
-.ftr {
-  color: #24271f;
-  background-color: #24271f;color: #66a344;
-  padding-top: 30px;padding-bottom: 30px;
-  line-height: 1.8em;
-}
-.ftr a:hover{
-  opacity: 0.5;
-}
-.modal-title{
-  color: #fff;
-  font: 1.5rem Azoft Sans , sans-serif!important;
-  line-height: 1.5;
-  font-weight: 500!important;
-  letter-spacing: 4px;
-}
-.modal-body{
-  font: 12px Assistant , sans-serif!important;
-}
-hr{ 
-  display: inline-block;
-  margin: 0.5em;
-  border:solid 1px #66a344;
-  position: relative;
-  width: 25%;
-}
+	#Section1{
+	  display: flex;
+	}
+	.nv{
+	  background-color: #24271f;
+	  display: inline-block;
+	  max-width: 25%;
+	}
+	.navbar-nav li a:hover{
+	  color: #98ed63!important;
+	}
+	.navbar-brand,.nl{
+	  color: #66a344!important;
+	  font: 1.8vw Azoft Sans , sans-serif;
+	  font-weight: 600;
+	  letter-spacing: 2px;
+	  line-height: 2em;
+	}
+	.nl2{
+	  color: #66a344!important;
+	  font: 15px Azoft Sans , sans-serif;
+	  font-weight: 600;
+	  letter-spacing: 2px;
+	  line-height: 1.2em;
+	}
+	.navbar-brand img:hover{
+	  filter: brightness(1.1);
+	}
+	.form-horizontal{
+	  font: 12px Assistant , sans-serif;
+	}
+	.input-group-text{
+	  font: 14px Assistant , sans-serif!important;
+	  background-color: #24271f;
+	  color: #66a344;
+	  border: 1px solid #98ed63;
+	}
+	.r5{
+	  font: 14px Assistant , sans-serif!important;
+	  text-transform: capitalize;
+	}
+	.r5 thead{
+	  font: 14px Assistant , sans-serif!important;
+	  font-weight: 600!important;
+	}
+	.ftr {
+	  color: #24271f;
+	  background-color: #24271f;color: #66a344;
+	  padding-top: 30px;padding-bottom: 30px;
+	  line-height: 1.8em;
+	}
+	.ftr a:hover{
+	  opacity: 0.5;
+	}
+	.modal-title{
+	  color: #fff;
+	  font: 1.5rem Azoft Sans , sans-serif!important;
+	  line-height: 1.5;
+	  font-weight: 500!important;
+	  letter-spacing: 4px;
+	}
+	.modal-body{
+	  font: 12px Assistant , sans-serif!important;
+	}
+	hr{ 
+	  display: inline-block;
+	  margin: 0.5em;
+	  border:solid 1px #66a344;
+	  position: relative;
+	  width: 25%;
+	}
 </style>
 
 </head>
@@ -362,7 +362,7 @@ hr{
 
 <script type="text/javascript" language="javascript" >
  $(document).ready(function(){
-  
+ 
   fetch_data();
 
   function fetch_data()
@@ -396,6 +396,26 @@ hr{
    }, 5000);
   }
 
+  function view_data(blndta, thndta)
+  {
+  	$.ajax({
+  	url:"fetch.php",
+  	method:"POST",
+  	data:{blndta:blndta,thndta:thndta},
+  	success:function(data)
+  	{	
+  	 console.log("Success");
+  	 console.log(blndta,thndta);
+  	 $('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
+  	 $('#piutangTables').DataTable().destroy();
+  	  fetch_data();	
+  	}
+  	});
+  	setInterval(function(){
+    $('#alert_message').html('');
+   }, 5000);
+  }
+
 /*  $('#tble').change(function () {
     var selectedText = $(this).find("option:selected").text();
     
@@ -418,6 +438,12 @@ hr{
    update_data(id, column_name, value);
   }); 
   
+  $(document).on('click', '.view', function(){
+  	var blndta = $('#bulan').val();
+  	var thndta = $('#tahun').val();
+  	view_data(blndta, thndta);
+  });
+
   $(document).on('click', '.delete', function(){
    var id = $(this).attr("id");
    if(confirm("Are you sure you want to remove this?"))
@@ -534,7 +560,7 @@ $(document).ready(function(){
 
 	<div class="modal-body">
 
-	<form class="form-horizontal" method="post" data-remote="true">
+	<form class="form-horizontal">
 	 <div class="row r6 pt-4 mx-0 mb-1 bg-light">
 	  
 	  <div class="col-sm-6 pl-0">
@@ -545,7 +571,7 @@ $(document).ready(function(){
 			<div class="input-group-prepend">
 			  <span class="input-group-text">Bulan:</span>
 			</div>
-			<input type="text" class="form-control" name="bulan" placeholder="Ketik Bulan dalam bentuk angka">
+			<input type="text" class="form-control" name="bulan" id="bulan" placeholder="Ketik Bulan dalam bentuk angka">
 	     </div>         
 	    </div>
 	   </div>
@@ -560,7 +586,7 @@ $(document).ready(function(){
 			<div class="input-group-prepend">
 			  <span class="input-group-text">Tahun:</span>
 			</div>
-			<input type="text" class="form-control" name="tahun" placeholder="Ketik Tahun">
+			<input type="text" class="form-control" name="tahun" id="tahun" placeholder="Ketik Tahun">
 	     </div>        
 	    </div>
 	   </div>
