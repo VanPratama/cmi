@@ -118,7 +118,7 @@ hr{
         <a class="nav-link border-bottom nl" href="#">View Data</a>
       </li>
       <li class="nav-item py-2 text-center">
-        <a class="nav-link border-bottom nl" href="#">Setting</a>
+        <a class="nav-link border-bottom nl" href="../atw/setting.php">Setting</a>
       </li> 
     </ul>
   </div> 
