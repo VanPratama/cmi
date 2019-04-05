@@ -78,7 +78,7 @@ width: 25%;
         <a class="nav-link border-bottom" href="#">View Data</a>
       </li>
       <li class="nav-item py-2 text-center">
-        <a class="nav-link border-bottom" href="#">Setting</a>
+        <a class="nav-link border-bottom" href="../atw/setting.php">Setting</a>
       </li> 
     </ul>
   </div> 
