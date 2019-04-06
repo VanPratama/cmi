@@ -396,32 +396,33 @@
    }, 5000);
   }
 
-  function view_data(blndta, thndta)
-  {
-  	$.post('fetch.php', {blndta:blndta,thndta:thndta}, function(response, status) {
-  		console.log(response);
-  	});
-  }
-
   // function view_data(blndta, thndta)
   // {
-  // 	$.ajax({
-  // 	url:"fetch.php",
-  // 	method:"POST",
-  // 	data:{blndta:blndta,thndta:thndta},
-  // 	success:function(data)
-  // 	{	
-  // 	 console.log("Success");
-  // 	 console.log(blndta,thndta);
-  // 	 $('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
-  // 	 $('#piutangTables').DataTable().destroy();
-  // 	  fetch_data();	
-  // 	}
+  // 	$.post('fetch.php', {blndta:blndta,thndta:thndta}, function(response, status) {
+  // 		console.log(response);
   // 	});
-  // 	setInterval(function(){
-  //   $('#alert_message').html('');
-  //  }, 5000);
   // }
+
+  function view_data(blndta, thndta)
+  {
+  	$.ajax({
+  	url:"fetch.php",
+  	method:"POST",
+  	data:{blndta:blndta,thndta:thndta},
+  	success:function(data)
+  	{	
+  	 console.log("Success");
+  	 console.log(data);
+  	 console.log(Number.isInteger(thndta));    
+  	 $('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
+  	 $('#piutangTables').DataTable().destroy();
+  	  fetch_data();	
+  	}
+  	});
+  	setInterval(function(){
+    $('#alert_message').html('');
+   }, 5000);
+  }
 
 /*  $('#tble').change(function () {
     var selectedText = $(this).find("option:selected").text();

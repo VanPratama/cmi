@@ -1,11 +1,15 @@
 <?php
 
 include 'connect.php';
+if(isset($_POST["id"]))
+{
 $columns = array('id','Customer', 'Invoice', 'DateOfInvoice', 'Amount', 'PayTerm', 'DueDate', 'PaymentDate', 'PaidAmount', 'Clear');
-$bulanv = isset($_POST["blndta"]);
-$tahunv = isset($_POST["thndta"]);
+// $bulanv = (int)isset($_POST["blndta"]);
+// $tahunv = (int)isset($_POST["thndta"]);
+$bulanv = mysqli_real_escape_string($conn, $_POST["blndta"]);
+$tahunv = mysqli_real_escape_string($conn, $_POST["thndta"]);
 
-$query = "SELECT id,Customer,Invoice,DateOfInvoice,Amount,PayTerm,DueDate,PaymentDate,PaidAmount,Clear FROM `cmi piutang dagang` WHERE Month = '$bulanv' AND Year = '$tahunv' ";
+$query = "SELECT id,Customer,Invoice,DateOfInvoice,Amount,PayTerm,DueDate,PaymentDate,PaidAmount,Clear FROM `cmi piutang dagang` WHERE Month = $bulanv AND Year = $tahunv ";
 
 die($query);
 
@@ -67,7 +71,7 @@ while($row = mysqli_fetch_array($result))
 
 function get_all_data($conn)
 {
- $query = "SELECT count(*) FROM `cmi piutang dagang`";
+ $query = "SELECT * FROM `cmi piutang dagang`";
  $result = mysqli_query($conn, $query);
  return mysqli_num_rows($result);
 }
@@ -80,5 +84,5 @@ $output = array(
 );
 
 echo json_encode($output);
-
+}
 ?>
