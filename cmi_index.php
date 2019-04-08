@@ -37,6 +37,19 @@
 .navbar-brand img:hover{
   filter: brightness(1.1);
 }
+.nvoverlay{
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 10001;
+}
+.coloverlay{
+  margin-right: -13.5px;
+  z-index: 9000;
+  opacity: .9;
+  /*background-color: #defcfc;*/
+  background-color: #24271f;
+}
 .ftr {
 color: #24271f;
 background-color: #24271f;color: #66a344;
@@ -85,9 +98,9 @@ width: 25%;
 </nav>
 <div class="row mx-0">
   <div class="col-sm-9 px-0">
-    <div class="card" style="background-color: #1f2725;color: #66a344;">
+
+    <div class="card" style="background-color: #1f2725;color: #66a344;border-radius: 0!important;">
       <?php session_start();?>
-      <img class="card-img-top w-50 mt-4 align-self-center" src="../atw/noimage.jpg" alt="Card image">
       <!-- <img class="card-img-top" src="<?if(isset($_SESSION['gambar'])){echo ($_SESSION['gambar']);}?>" alt="Card image"> -->
       <div class="card-body py-4">
         <h4 class="card-title text-center py-4">
@@ -97,13 +110,24 @@ width: 25%;
         <p class="card-text text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br><br>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br><br>
         </p>
       </div>
+      <img class="card-img-bottom mt-4 align-self-center" src="../atw/birb.jpg" alt="Card image">
     </div>
   </div>
 
   <div class="col-sm-3 py-4 px-0" style="background-color: #24271f;color: #66a344;">
-    <h2 class="text-center">Due-Date</h2><br>
-    <?php include 'duedateboard.php'?>
-    </p>
+    <nav class="navbar navbar-dark navbar-expand-sm py-4 nvoverlay">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseoverlay" style="border-radius: 3rem!important;border-color: #98ed63;">
+      <span class="navbar-toggler-icon" style="display: flex;width: 1em;"></span>
+    </button>  
+    
+    <div class="collapse navbar-collapse" id="collapseoverlay">
+      <ul class="navbar-nav px-4 coloverlay" style="flex-direction: column!important;">
+      <h2 class="text-center">Due-Date</h2><br>
+      <?php include 'duedateboard.php'?>
+      </ul>
+    </div>
+    </nav>
   </div>
 </div>
 </div>
