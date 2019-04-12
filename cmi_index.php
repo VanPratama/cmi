@@ -40,7 +40,6 @@
 .nvoverlay{
   position: fixed;
   top: 0;
-  right: 0;
   z-index: 10001;
 }
 .coloverlay{
@@ -115,14 +114,14 @@ width: 25%;
   </div>
 
   <div class="col-sm-3 py-4 px-0" style="background-color: #24271f;color: #66a344;">
-    <nav class="navbar navbar-dark navbar-expand-sm py-4 nvoverlay">
+    <nav class="navbar navbar-dark navbar-expand-sm py-4 px-0 nvoverlay">
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseoverlay" style="border-radius: 3rem!important;border-color: #98ed63;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseoverlay" style="border-radius: 3rem!important;border-color: #98ed63;border-width: 2px;padding-right: 6px;padding-left: 6px;padding-bottom: 1px;padding-top: 1px;">
       <span class="navbar-toggler-icon" style="display: flex;width: 1em;"></span>
     </button>  
     
     <div class="collapse navbar-collapse" id="collapseoverlay">
-      <ul class="navbar-nav px-4 coloverlay" style="flex-direction: column!important;">
+      <ul class="navbar-nav px-5 coloverlay" style="flex-direction: column!important;">
       <h2 class="text-center">Due-Date</h2><br>
       <?php include 'duedateboard.php'?>
       </ul>
