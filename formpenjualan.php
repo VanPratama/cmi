@@ -7,7 +7,7 @@
 			  <div class="input-group-prepend">
 			    <span class="input-group-text">COA:</span>
 			  </div>
-			  <input type="text" class="form-control" name="coa" placeholder="Masukkan Nomor COA">
+			  <input type="text" class="form-control" name="coa" id="coa" placeholder="Masukkan Nomor COA">
 			 </div>
 			 </div>
 			</div>
@@ -18,7 +18,7 @@
 			  <div class="input-group-prepend">
 			    <span class="input-group-text">Customer:</span>
 			  </div>
-			  <input type="text" class="form-control" name="customer" placeholder="Masukkan Nama Customer">
+			  <input type="text" class="form-control" name="customer" id="customer" placeholder="Masukkan Nama Customer">
 			 </div>
 			 </div>
 			</div>
@@ -29,7 +29,7 @@
 			  <div class="input-group-prepend">
 			    <span class="input-group-text">Nama Barang:</span>
 			  </div>
-			  <input type="text" class="form-control" name="barang" placeholder="Masukkan Nama Barang">
+			  <input type="text" class="form-control" name="barang" id="barang" placeholder="Masukkan Nama Barang">
 			 </div>
 			 </div>
 			</div>
@@ -45,7 +45,7 @@
 			  <div class="input-group-prepend">
 			    <span class="input-group-text">SPK Date:</span>
 			  </div>
-			  <input type="date" class="form-control" name="spkdate">
+			  <input type="date" class="form-control" name="spkdate" id="spkdate">
 			 </div>
 			 </div>
 			</div>
@@ -56,7 +56,7 @@
 			  <div class="input-group-prepend">
 			    <span class="input-group-text">No. SPK:</span>
 			  </div>
-			  <input type="text" class="form-control" name="nospk" placeholder="Masukkan Nomor SPK">
+			  <input type="text" class="form-control" name="nospk" id="nospk" placeholder="Masukkan Nomor SPK">
 			 </div>
 			 </div>
 			</div>
@@ -67,7 +67,7 @@
 			  <div class="input-group-prepend">
 			    <span class="input-group-text">[SPK] Quantity:</span>
 			  </div>
-			  <input type="text" class="form-control" name="qty" placeholder="Masukkan Jumlah barang">
+			  <input type="text" class="form-control" name="qty" id="qty" placeholder="Masukkan Jumlah barang">
 			 </div>
 			 </div>
 			</div>
@@ -78,7 +78,7 @@
 			  <div class="input-group-prepend">
 			    <span class="input-group-text">Hasil:</span>
 			  </div>
-			  <input type="text" class="form-control" name="hasil" placeholder="Masukkan Hasil">
+			  <input type="text" class="form-control" name="hasil" id="hasil" placeholder="Masukkan Hasil">
 			 </div>
 			 </div>
 			</div>
@@ -89,7 +89,7 @@
 			  <div class="input-group-prepend">
 			    <span class="input-group-text">Selisih:</span>
 			  </div>
-			  <input type="text" class="form-control" name="selisih" placeholder="Masukkan Jumlah Selisih">
+			  <input type="text" class="form-control" name="selisih" id="selisih" placeholder="Masukkan Jumlah Selisih">
 			 </div>
 			 </div>
 			</div>								
@@ -106,7 +106,7 @@
 			  <div class="input-group-prepend">
 			    <span class="input-group-text">Invoice Date:</span>
 			  </div>
-			  <input type="date" class="form-control" name="invoicedate">
+			  <input type="date" class="form-control" name="invoicedate" id="invoicedate">
 			 </div>
 			 </div>
 			</div>
@@ -117,7 +117,7 @@
 			  <div class="input-group-prepend">
 			    <span class="input-group-text">No.Invoice:</span>
 			  </div>
-			  <input type="text" class="form-control" name="nomorinvoice" placeholder="Masukkan Nomor Invoice">
+			  <input type="text" class="form-control" name="nomorinvoice" id="nomorinvoice" placeholder="Masukkan Nomor Invoice">
 			 </div>
 			 </div>
 			</div>
@@ -128,7 +128,7 @@
 			  <div class="input-group-prepend">
 			    <span class="input-group-text">[Invoice] Quantity:</span>
 			  </div>
-			  <input type="text" class="form-control" name="nomorinvoice" placeholder="Masukkan Jumlah Barang">
+			  <input type="text" class="form-control" name="invqty" id="invqty" placeholder="Masukkan Jumlah Barang">
 			 </div>
 			 </div>
 			</div>
@@ -139,7 +139,7 @@
 			  <div class="input-group-prepend">
 			    <span class="input-group-text">P/U:</span>
 			  </div>
-			  <input type="text" class="form-control" name="pu" placeholder="Masukkan P/U">
+			  <input type="text" class="form-control" name="pu" id="pu" placeholder="Masukkan P/U">
 			 </div>
 			 </div>
 			</div>
@@ -150,7 +150,7 @@
 			  <div class="input-group-prepend">
 			    <span class="input-group-text">Nominal:</span>
 			  </div>
-			  <input type="text" class="form-control" name="nominal" placeholder="Masukkan Nominal">
+			  <input type="text" class="form-control" name="nominal" id="nominal" placeholder="Masukkan Nominal">
 			 </div>
 			 </div>
 			</div>
@@ -165,7 +165,7 @@
 			  <div class="input-group-prepend">
 			    <span class="input-group-text">Tanggal Pembayaran:</span>
 			  </div>
-			  <input type="date" class="form-control" name="tglbayar">
+			  <input type="date" class="form-control" name="tglbayar" id="tglbayar">
 			 </div>
 			 </div>
 			</div>
@@ -176,7 +176,7 @@
 			  <div class="input-group-prepend">
 			    <span class="input-group-text">Metode Pembayaran:</span>
 			  </div>
-			  <input type="text" class="form-control" name="pembayaran" placeholder="Masukkan Metode Pembayaran [Cash,BCA,BRI,etc]">
+			  <input type="text" class="form-control" name="metode" id="metode" placeholder="Masukkan Metode Pembayaran [Cash,BCA,BRI,etc]">
 			 </div>
 			 </div>
 			</div>
@@ -187,7 +187,7 @@
 			  <div class="input-group-prepend">
 			    <span class="input-group-text">Total Pembayaran:</span>
 			  </div>
-			  <input type="text" class="form-control" name="totalbayar" placeholder="Masukkan Total Pembayaran">
+			  <input type="text" class="form-control" name="totalbayar" id="totalbayar" placeholder="Masukkan Total Pembayaran">
 			 </div>
 			 </div>
 			</div>
@@ -198,7 +198,7 @@
 			  <div class="input-group-prepend">
 			    <span class="input-group-text">Saldo Pembayaran:</span>
 			  </div>
-			  <input type="text" class="form-control" name="saldobayar" placeholder="Masukkan Saldo">
+			  <input type="text" class="form-control" name="saldobayar" id="saldobayar" placeholder="Masukkan Saldo">
 			 </div>
 			 </div>
 			</div>		
@@ -301,9 +301,9 @@
     <div class="col-sm-10">
      <div class="input-group input-group-md">
      <div class="input-group-prepend">
-	    <button class="btn btn-success px-5" type="submit" name="submitrekap">Enter Data</button>
+	    <button class="btn btn-success px-5" type="submit" name="submitrekap" id="submitrekap">Enter Data</button>
 	 </div>
-	 <label class="control-label col-sm-8 align-self-center text-center mb-0" for="dateinp2">
+	 <label class="control-label col-sm-8 align-self-center text-center mb-0" id="display-error">
 
 	 </label>
 	 </div> 
@@ -312,3 +312,48 @@
  	</div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+
+      $('#submitrekap').click(function(e){
+        e.preventDefault();
+
+        var coa = $("#coa").val();
+        var customer = $("#customer").val();
+        var barang = $("#barang").val();
+        var spkdate = $("#spkdate").val();
+        var nospk = $("#nospk").val();
+        var qty = $("#qty").val();
+        var hasil = $("#hasil").val();
+        var selisih = $("#selisih").val();
+        var invoicedate = $("#invoicedate").val();
+        var nomorinvoice = $("#nomorinvoice").val();
+        var invqty = $("#invqty").val();
+        var pu = $("#pu").val();
+        var nominal = $("#nominal").val();
+        var tglbayar = $("#tglbayar").val();
+        var metode = $("#metode").val();
+        var totalbayar = $("#totalbayar").val();
+        var saldobayar = $("#saldobayar").val();
+
+        $.ajax({
+            type: "POST",
+            url: "/InsertDataTable.php",
+            dataType: "json",
+            data: {coa:coa, customer:customer, barang:barang, spkdate:spkdate, nospk:nospk, qty:qty, hasil:hasil, selisih:selisih, invoicedate:invoicedate, nomorinvoice:nomorinvoice, invqty:invqty, pu:pu, nominal:nominal, tglbayar:tglbayar, metode:metode, totalbayar:totalbayar, saldobayar:saldobayar},
+            success : function(data){
+                if (data.code == "200"){
+                    alert("Success: " +data.msg);
+                } else {
+                    $("#display-error").html("<ul>"+data.msg+"</ul>");
+                    $("#display-error").css("display","block");
+                }
+            }
+        });
+
+
+      });
+  });
+</script>
