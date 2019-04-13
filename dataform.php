@@ -83,6 +83,9 @@
 	.modal-body{
 	  font: 12px Assistant , sans-serif!important;
 	}
+	.table thead th{
+	  vertical-align: middle;
+	}
 	hr{ 
 	  display: inline-block;
 	  margin: 0.5em;
@@ -126,7 +129,7 @@
 </nav>
 
 <div class="container-fluid py-5" style="background-color: #1f2725;color: #66a344;">
-	<h3 class="text-center" style="font: 1.8vw Azoft Sans,sans-serif;letter-spacing: 16px;line-height: 2em;">DATA FORM</h3>
+	<h3 class="text-center" style="font: 2.5vw Azoft Sans,sans-serif;letter-spacing: 16px;line-height: 5em;">DATA FORM</h3>
   	<br>
 
   <ul class="nav nav-tabs" role="tablist">
@@ -307,6 +310,8 @@
       <form class="form-horizontal" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
       	<?php include 'formpenjualan.php' ?>
       </form>
+      <?php include 'tablerekap.php' ?>
+
     </div>
     <div id="menu2" class="container tab-pane fade"><br>
       <h3>Form-Trial Balance</h3>
@@ -339,6 +344,8 @@
      url:"fetch.php",
      type:"POST"
     }
+   }, {
+
    });
   }
   
