@@ -194,7 +194,7 @@
 			  <div class="input-group-prepend">
 			    <span class="input-group-text">Mesin Besar:</span>
 			  </div>
-			  <input type="text" class="form-control" name="mesinbesar" placeholder="Hasil Mesin Besar">
+			  <input type="text" class="form-control" name="mesinbesar" id="mesinbesar" placeholder="Hasil Mesin Besar">
 			 </div>
 			 </div>
 			</div>
@@ -205,7 +205,7 @@
 			  <div class="input-group-prepend">
 			    <span class="input-group-text">Mesin Kecil:</span>
 			  </div>
-			  <input type="text" class="form-control" name="mesinkecil" placeholder="Hasil Mesin Kecil">
+			  <input type="text" class="form-control" name="mesinkecil" id="mesinkecil" placeholder="Hasil Mesin Kecil">
 			 </div>
 			 </div>
 			</div>
@@ -216,7 +216,7 @@
 			  <div class="input-group-prepend">
 			    <span class="input-group-text">HPP:</span>
 			  </div>
-			  <input type="text" class="form-control" name="hpp" placeholder="Masukkan HPP">
+			  <input type="text" class="form-control" name="hpp" id="hpp" placeholder="Masukkan HPP">
 			 </div>
 			 </div>
 			</div>			
@@ -297,7 +297,7 @@
 
       $('#submitrekap').click(function(e){
         e.preventDefault();
-        
+
         var coa = $("#coa").val();
         var customer = $("#customer").val();
         var barang = $("#barang").val();
@@ -313,12 +313,14 @@
         var nominal = $("#nominal").val();
         var tglbayar = $("#tglbayar").val();
         var totalbayar = $("#totalbayar").val();
+        var mesinbesar = $("#mesinbesar").val();
+        var mesinkecil = $("#mesinkecil").val();
 
         $.ajax({
             type: "POST",
             url: "InsertRekap.php",
             dataType: "json",
-            data: {coa:coa, customer:customer, barang:barang, spkdate:spkdate, nospk:nospk, qty:qty, hasil:hasil, selisih:selisih, invoicedate:invoicedate, nomorinvoice:nomorinvoice, invqty:invqty, pu:pu, nominal:nominal, tglbayar:tglbayar, totalbayar:totalbayar},
+            data: {coa:coa, customer:customer, barang:barang, spkdate:spkdate, nospk:nospk, qty:qty, hasil:hasil, selisih:selisih, invoicedate:invoicedate, nomorinvoice:nomorinvoice, invqty:invqty, pu:pu, nominal:nominal, tglbayar:tglbayar, totalbayar:totalbayar, mesinbesar:mesinbesar, mesinkecil:mesinkecil},
             success : function(data){
                 if (data.code == "200"){
                     alert("Success: " +data.msg);
