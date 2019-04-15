@@ -8,7 +8,7 @@
      	<th rowspan="2">Nama Customer</th>
      	<th rowspan="2">Nama Barang</th>
  		<th colspan="5">SPK</th>
- 		<th colspan="6">Invoice</th>
+ 		<th colspan="5">Invoice</th>
  		<th colspan="2">Payment</th>
  		<th colspan="2">Mesin</th>
  		<th colspan="4">Shift</th>
@@ -26,7 +26,6 @@
      	<th>PO Qty</th>
      	<th>P/U</th>
      	<th>Nominal</th>
-     	<th>Total</th>
      	<th>Pay Date</th>
      	<th>Pay Total</th>
      	<th>Besar</th>
