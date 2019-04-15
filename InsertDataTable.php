@@ -34,21 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['entr'])){
 
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['idedt'])){
-	$idEdit = Insinp($_POST["eid"]);
-	$esql = "SELECT id,Customer,Invoice,DateOfInvoice,Amount,PayTerm,DueDate,PaymentDate,PaidAmount,Clear FROM `cmi piutang dagang` WHERE ID = '$idEdit'";
-    $eresult = mysqli_query($conn, $esql);
-    $erows = mysqli_num_rows($eresult);
-
-	if(!$erows) {
-		echo '<span style="color:red;"><strong>Error!</strong>ID Tidak Valid</span>';
-	}else{
-		session_start();
-		$_SESSION['id']=$erows["ID"];
-		echo("<script>location.href = 'EditDataForm.php?$idEdit';</script>");
-	}
-}
-
 function Insinp($data){
 	$data = trim($data);
 	$data = stripslashes($data);
