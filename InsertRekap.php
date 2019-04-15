@@ -45,11 +45,14 @@ if (empty($_POST["coa"]) || empty($_POST["customer"]) || empty($_POST["barang"])
 }
 
 if(empty($errorMSG)){
-	// $msg = "COA: ".$coa.", Customer: ".$customer.", Barang: ".$barang.", SPK Date:".$spkdate.", No. SPK: ".$nospk.", Quantity: ".$qty.", Hasil: ".$hasil.", Selisih: ".$selisih.", Invoice Date: ".$invoicedate.", No. Invoice: ".$nomorinvoice.", Invoice Quantity: ".$invqty.", PU: ".$pu.", Nominal: ".$nominal.", Tanggal Bayar: ".$tglbayar.", Total Pembayaran: ".$totalbayar;
 include 'connect.php';
 	$msg = "INSERT INTO `rekapharga`(coa,customer,namabarang,tglspk,nospk,qtypo,hasil,selisih,tglinv,noinv,qty,pu,nominal,tglbayar,paytotal,besar,kecil) VALUES('$coa', '$customer', '$barang', '$spkdate', '$nospk', '$qty', '$hasil', '$selisih', '$invoicedate', '$nomorinvoice', '$invqty', '$pu', '$nominal', '$tglbayar', '$totalbayar', '$mesinbesar', '$mesinkecil')";
 
+	$idupd = "UPDATE `rekapharga` SET idspk = id, idinv = id, idbayar = id, idmesin = id, shiftid = id";
+
+
 	mysqli_query($conn, $msg);
+	mysqli_query($conn, $idupd);
 	echo json_encode(['code'=>200, 'msg'=>$msg]);
 	exit;
 }
