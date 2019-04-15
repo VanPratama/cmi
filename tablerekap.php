@@ -9,7 +9,7 @@
      	<th rowspan="2">Nama Barang</th>
  		<th colspan="5">SPK</th>
  		<th colspan="6">Invoice</th>
- 		<th colspan="4">Payment</th>
+ 		<th colspan="2">Payment</th>
  		<th colspan="2">Mesin</th>
  		<th colspan="4">Shift</th>
  		<th rowspan="2">HPP</th>
@@ -28,9 +28,7 @@
      	<th>Nominal</th>
      	<th>Total</th>
      	<th>Pay Date</th>
-     	<th>Descr.</th>
      	<th>Pay Total</th>
-     	<th>Saldo</th>
      	<th>Besar</th>
      	<th>Kecil</th>
      	<th>Pagi</th>
