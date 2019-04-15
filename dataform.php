@@ -307,7 +307,7 @@
       	FORM-REPORT PENJUALAN
   	  </h3>
 
-      <form class="form-horizontal" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
+      <form class="form-horizontal form-user" role="form" data-toggle="validator" class="shake" method="post">
       	<?php include 'formpenjualan.php' ?>
       </form>
       <?php include 'tablerekap.php' ?>
