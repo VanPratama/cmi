@@ -86,6 +86,10 @@
 	.table thead th{
 	  vertical-align: middle;
 	}
+	.rekapcl{
+		font: 14px Assistant , sans-serif!important;
+		font-weight: 600!important;
+	}
 	hr{ 
 	  display: inline-block;
 	  margin: 0.5em;

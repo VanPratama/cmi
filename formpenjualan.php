@@ -282,7 +282,7 @@
      <div class="input-group-prepend">
 	    <button class="btn btn-success px-5" type="submit" name="submitrekap" id="submitrekap">Enter Data</button>
 	 </div>
-	 <label class="control-label col-sm-8 align-self-center text-center mb-0" id="display-error">
+	 <label class="control-label col-sm-8 align-self-center text-center mb-0 rekapcl" id="display-error">
 	 	<!-- <?php include 'InsertRekap.php' ?> -->
 	 </label>
 	 </div> 
@@ -323,10 +323,9 @@
             data: {coa:coa, customer:customer, barang:barang, spkdate:spkdate, nospk:nospk, qty:qty, hasil:hasil, selisih:selisih, invoicedate:invoicedate, nomorinvoice:nomorinvoice, invqty:invqty, pu:pu, nominal:nominal, tglbayar:tglbayar, totalbayar:totalbayar, mesinbesar:mesinbesar, mesinkecil:mesinkecil},
             success : function(data){
                 if (data.code == "200"){
-                    alert("Success: " +data.msg);
+                	$("#display-error").html("Success");
                 } else {
                     $("#display-error").html("<ul>"+data.msg+"</ul>");
-                    $("#display-error").css("display","block");
                 }
             }
         });
