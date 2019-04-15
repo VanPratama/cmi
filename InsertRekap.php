@@ -1,5 +1,5 @@
 <?php
-include 'connect.php';
+
 $errorMSG = "";
 
 if (empty($_POST["coa"]) || empty($_POST["customer"]) || empty($_POST["barang"])) {
@@ -40,13 +40,17 @@ if (empty($_POST["coa"]) || empty($_POST["customer"]) || empty($_POST["barang"])
     $nominal = $_POST["nominal"];
     $tglbayar = $_POST["tglbayar"];
     $totalbayar = $_POST["totalbayar"];
+    $mesinbesar = $_POST["mesinbesar"];
+    $mesinkecil = $_POST["mesinkecil"];
 }
 
 if(empty($errorMSG)){
 	// $msg = "COA: ".$coa.", Customer: ".$customer.", Barang: ".$barang.", SPK Date:".$spkdate.", No. SPK: ".$nospk.", Quantity: ".$qty.", Hasil: ".$hasil.", Selisih: ".$selisih.", Invoice Date: ".$invoicedate.", No. Invoice: ".$nomorinvoice.", Invoice Quantity: ".$invqty.", PU: ".$pu.", Nominal: ".$nominal.", Tanggal Bayar: ".$tglbayar.", Total Pembayaran: ".$totalbayar;
-	$msg = "INSERT INTO 'rekapharga'(coa,customer,namabarang,totalrekap,tglspk,nospk,qtypo,hasil,selisih,tglinv,noinv,qty,pu,nominal,total,tglbayar,paytotal,besar,kecil) VALUES('$coa', '$customer', '$barang', '$spkdate', '$nospk', '$qty', '$hasil', '$selisih', '$invoicedate', '$nomorinvoice', '$invqty', '$pu', '$nominal', '$tglbayar', '$totalbayar')";
+include 'connect.php';
+	$msg = "INSERT INTO `rekapharga`(coa,customer,namabarang,tglspk,nospk,qtypo,hasil,selisih,tglinv,noinv,qty,pu,nominal,tglbayar,paytotal,besar,kecil) VALUES('$coa', '$customer', '$barang', '$spkdate', '$nospk', '$qty', '$hasil', '$selisih', '$invoicedate', '$nomorinvoice', '$invqty', '$pu', '$nominal', '$tglbayar', '$totalbayar', '$mesinbesar', '$mesinkecil')";
+
 	mysqli_query($conn, $msg);
-	echo json_encode($msg);
+	echo json_encode(['code'=>200, 'msg'=>$msg]);
 	exit;
 }
 
