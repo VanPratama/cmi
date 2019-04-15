@@ -174,34 +174,13 @@
 			 <div class="col-sm-10">
 			 <div class="input-group mb-3 input-group-sm">
 			  <div class="input-group-prepend">
-			    <span class="input-group-text">Metode Pembayaran:</span>
-			  </div>
-			  <input type="text" class="form-control" name="metode" id="metode" placeholder="Masukkan Metode Pembayaran [Cash,BCA,BRI,etc]">
-			 </div>
-			 </div>
-			</div>
-
-			<div class="form-group">
-			 <div class="col-sm-10">
-			 <div class="input-group mb-3 input-group-sm">
-			  <div class="input-group-prepend">
 			    <span class="input-group-text">Total Pembayaran:</span>
 			  </div>
 			  <input type="text" class="form-control" name="totalbayar" id="totalbayar" placeholder="Masukkan Total Pembayaran">
 			 </div>
 			 </div>
 			</div>
-
-			<div class="form-group">
-			 <div class="col-sm-10">
-			 <div class="input-group mb-3 input-group-sm">
-			  <div class="input-group-prepend">
-			    <span class="input-group-text">Saldo Pembayaran:</span>
-			  </div>
-			  <input type="text" class="form-control" name="saldobayar" id="saldobayar" placeholder="Masukkan Saldo">
-			 </div>
-			 </div>
-			</div>		
+	
 		</ul>
 	</div>
 </div>
@@ -304,7 +283,7 @@
 	    <button class="btn btn-success px-5" type="submit" name="submitrekap" id="submitrekap">Enter Data</button>
 	 </div>
 	 <label class="control-label col-sm-8 align-self-center text-center mb-0" id="display-error">
-
+	 	<!-- <?php include 'InsertRekap.php' ?> -->
 	 </label>
 	 </div> 
  	</div>
@@ -316,10 +295,9 @@
 <script type="text/javascript">
   $(document).ready(function() {
 
-
       $('#submitrekap').click(function(e){
         e.preventDefault();
-
+        
         var coa = $("#coa").val();
         var customer = $("#customer").val();
         var barang = $("#barang").val();
@@ -334,15 +312,13 @@
         var pu = $("#pu").val();
         var nominal = $("#nominal").val();
         var tglbayar = $("#tglbayar").val();
-        var metode = $("#metode").val();
         var totalbayar = $("#totalbayar").val();
-        var saldobayar = $("#saldobayar").val();
 
         $.ajax({
             type: "POST",
-            url: "/InsertDataTable.php",
+            url: "InsertRekap.php",
             dataType: "json",
-            data: {coa:coa, customer:customer, barang:barang, spkdate:spkdate, nospk:nospk, qty:qty, hasil:hasil, selisih:selisih, invoicedate:invoicedate, nomorinvoice:nomorinvoice, invqty:invqty, pu:pu, nominal:nominal, tglbayar:tglbayar, metode:metode, totalbayar:totalbayar, saldobayar:saldobayar},
+            data: {coa:coa, customer:customer, barang:barang, spkdate:spkdate, nospk:nospk, qty:qty, hasil:hasil, selisih:selisih, invoicedate:invoicedate, nomorinvoice:nomorinvoice, invqty:invqty, pu:pu, nominal:nominal, tglbayar:tglbayar, totalbayar:totalbayar},
             success : function(data){
                 if (data.code == "200"){
                     alert("Success: " +data.msg);
