@@ -283,7 +283,7 @@
 	    <button class="btn btn-success px-5" type="submit" name="submitrekap" id="submitrekap">Enter Data</button>
 	 </div>
 	 <label class="control-label col-sm-8 align-self-center text-center mb-0 rekapcl" id="display-error">
-	 	<!-- <?php include 'InsertRekap.php' ?> -->
+	 	<!-- <div class="spinner-border" id="spin" role="status" style="display: none;"></div> -->
 	 </label>
 	 </div> 
  	</div>
@@ -292,13 +292,19 @@
   </div>
 </div>
 
+
 <script type="text/javascript">
+
   $(document).ready(function() {
 
       $('#submitrekap').click(function(e){
         e.preventDefault();
 
-        var coa = $("#coa").val();
+        $("#display-error").html('<div class="spinner-border" id="spin" role="status"></div>');
+        $("#submitrekap").prop("disabled", true);
+
+		var myVar;
+		var coa = $("#coa").val();
         var customer = $("#customer").val();
         var barang = $("#barang").val();
         var spkdate = $("#spkdate").val();
@@ -321,12 +327,18 @@
             url: "InsertRekap.php",
             dataType: "json",
             data: {coa:coa, customer:customer, barang:barang, spkdate:spkdate, nospk:nospk, qty:qty, hasil:hasil, selisih:selisih, invoicedate:invoicedate, nomorinvoice:nomorinvoice, invqty:invqty, pu:pu, nominal:nominal, tglbayar:tglbayar, totalbayar:totalbayar, mesinbesar:mesinbesar, mesinkecil:mesinkecil},
-            success : function(data){
-                if (data.code == "200"){
-                	$("#display-error").html("Success");
-                } else {
-                    $("#display-error").html("<ul>"+data.msg+"</ul>");
-                }
+
+            success : function(data){   		 	
+            	myVar = setTimeout(showPage, 3000);
+				function showPage()
+				{
+					$("#submitrekap").prop("disabled", false);
+	                if (data.code == "200"){
+	                	$("#display-error").html("Success");
+	                } else {
+	                    $("#display-error").html("<ul>"+data.msg+"</ul>");
+	                }
+				}
             }
         });
 
