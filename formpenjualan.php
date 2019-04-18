@@ -283,7 +283,7 @@
 	    <button class="btn btn-success px-5" type="submit" name="submitrekap" id="submitrekap">Enter Data</button>
 	 </div>
 	 <label class="control-label col-sm-8 align-self-center text-center mb-0 rekapcl" id="display-error">
-	 	<!-- <div class="spinner-border" id="spin" role="status" style="display: none;"></div> -->
+
 	 </label>
 	 </div> 
  	</div>
@@ -329,7 +329,7 @@
             data: {coa:coa, customer:customer, barang:barang, spkdate:spkdate, nospk:nospk, qty:qty, hasil:hasil, selisih:selisih, invoicedate:invoicedate, nomorinvoice:nomorinvoice, invqty:invqty, pu:pu, nominal:nominal, tglbayar:tglbayar, totalbayar:totalbayar, mesinbesar:mesinbesar, mesinkecil:mesinkecil},
 
             success : function(data){   		 	
-            	myVar = setTimeout(showPage, 3000);
+            	myVar = setTimeout(showPage, 1000);
 				function showPage()
 				{
 					$("#submitrekap").prop("disabled", false);
