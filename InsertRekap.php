@@ -1,10 +1,13 @@
 <?php
-
+include 'connect.php';
 $errorMSG = "";
+
+$check = "SELECT * FROM `rekapharga` WHERE coa = '".$_POST["coa"]."' AND customer = '".$_POST["customer"]."' AND namabarang = '".$_POST["barang"]."' AND tglspk = '".$_POST["spkdate"]."' AND nospk = '".$_POST["nospk"]."' AND qtypo = '".$_POST["qty"]."' AND hasil = '".$_POST["hasil"]."' AND selisih = '".$_POST["selisih"]."' AND tglinv = '".$_POST["invoicedate"]."' AND noinv = '".$_POST["nomorinvoice"]."' AND qty = '".$_POST["invqty"]."' AND pu = '".$_POST["pu"]."' AND nominal = '".$_POST["nominal"]."' AND tglbayar = '".$_POST["tglbayar"]."' AND paytotal = '".$_POST["totalbayar"]."' AND besar = '".$_POST["mesinbesar"]."' AND kecil = '".$_POST["mesinkecil"]."' ";
+$duplikat = mysqli_query($conn, $check);
 
 if (empty($_POST["coa"]) || empty($_POST["customer"]) || empty($_POST["barang"])) {
     $errorMSG = '<span style="color:red;"><strong>Error!</strong> COA,Customer,Nama Barang tidak boleh kosong</span>';
-}elseif(!preg_match("/^[0-9]*$/",$_POST["coa"])){
+}elseif(!preg_match("/^[0-9.]*$/",$_POST["coa"])){
 	$errorMSG .= '<span style="color:red;"><strong>Error!</strong> COA harus angka</span>';
 }elseif(!preg_match("/^[0-9]*$/",$_POST["nospk"])){
 	$errorMSG .= '<span style="color:red;"><strong>Error!</strong> Nomor SPK harus angka</span>';
@@ -24,6 +27,8 @@ if (empty($_POST["coa"]) || empty($_POST["customer"]) || empty($_POST["barang"])
 	$errorMSG .= '<span style="color:red;"><strong>Error!</strong> Nominal harus angka</span>';
 }elseif(!preg_match("/^[0-9]*$/",$_POST["totalbayar"])){
 	$errorMSG .= '<span style="color:red;"><strong>Error!</strong> Total Pembayaran harus angka</span>';
+}elseif(mysqli_num_rows($duplikat)>0){
+	$errorMSG .= '<span style="color:red;"><strong>Error!</strong> Duplikat Data</span>';
 }else {
     $coa = $_POST["coa"];
     $customer = $_POST["customer"];
