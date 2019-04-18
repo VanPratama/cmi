@@ -1,4 +1,4 @@
-<div class="row r5 mx-0 mb-1 bg-light px-3 py-4 table-responsive">
+<div class="row r5 mx-0 mb-1 bg-light px-0 py-4 table-responsive">
  <div id="alert_message"></div>
  <table  id="rekaptable" class="table table-striped table-bordered text-center">
  	<thead class="bg-success" style="font-size: 15px;">
@@ -16,6 +16,10 @@
  	</tr>
  	 <tr>
      	<!-- <th>Total Rekap</th> -->
+     	<!-- <th>ID</th>
+     	<th>COA</th>
+     	<th>Nama Customer</th>
+     	<th>Nama Barang</th> -->
      	<th>SPK Date</th>
      	<th>No. SPK</th>
      	<th>PO Qty</th>
@@ -41,3 +45,14 @@
  	</tbody> 
  </table>
 </div>
+
+<script type="text/javascript" language="javascript" >
+$(document).ready(function() {
+    var table = $('#rekaptable').DataTable( {
+        scrollX:        true,
+        fixedColumns:   {
+            leftColumns: 4,
+        }
+    } );
+} );
+</script>
